@@ -71,3 +71,8 @@ class TestFunsizeWorkerFromTemplate(TestCase):
         tg = self.generate_task_graph("branch", 2)
         symbol = tg["tasks"][1]["task"]["extra"]["treeherder"]["symbol"]
         self.assertEqual(symbol, "1.2s")
+
+    def test_mar_signing_format(self):
+        """Ensure MAR signing format"""
+        tg = self.generate_task_graph("branch")
+        assert 'project:releng:signing:format:mar_sha384' in tg["tasks"][1]["task"]["scopes"]
