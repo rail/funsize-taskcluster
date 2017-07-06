@@ -36,7 +36,7 @@ BUILDERS = [
 ]
 
 
-def find_gecko_revision_task(tasks):
+def find_balrog_props_task(tasks):
     log.info("Looking for gecko revision in %s", tasks)
     queue = tc_Queue()
     for task_id in tasks:
@@ -96,7 +96,7 @@ def parse_taskcluster_message(payload):
         log.exception("Unable to load task definition for %s", taskid)
         return
 
-    balrog_data = find_gecko_revision_task(task_definition['dependencies'])
+    balrog_data = find_balrog_props_task(task_definition['dependencies'])
     if not balrog_data:
         log.warning("Ignoring task %s", taskid)
         return
