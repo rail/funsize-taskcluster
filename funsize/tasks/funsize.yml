@@ -23,7 +23,7 @@ tasks:
         source: https://github.com/mozilla/funsize
         # Treeherder hashes the names and may override groupSymbol if the
         # name matches other similar task with different update number
-        name: "[funsize] Update generating task (today-{{ update_number }}, chunk {{ chunk_name }}{% if subchunk %}, subchunk {{ subchunk }}{% endif %})"
+        name: "[funsize] Update generating task (today-{{ update_number }}, locale {{ e.locale }})"
         description: |
           This task generates MAR files and publishes unsigned bits.
 
@@ -48,8 +48,8 @@ tasks:
           - staging
           - production
         treeherder:
-          symbol: {{ chunk_name }}{% if subchunk %}.{{ subchunk }}{% endif %}g
-          groupSymbol: Update-{{ update_number }}
+          symbol: {{ e.locale }}
+          groupSymbol: fs-g-{{ update_number }}
           collection:
             opt: true
           machine:
@@ -88,7 +88,7 @@ tasks:
       metadata:
         owner: release+funsize@mozilla.com
         source: https://github.com/mozilla/funsize
-        name: "[funsize] MAR signing task (today-{{ update_number }}, chunk {{ chunk_name }}{% if subchunk %}, subchunk {{ subchunk }}{% endif %})"
+        name: "[funsize] MAR signing task (today-{{ update_number }}, locale {{ e.locale }})"
         description: |
           This task signs MAR files and publishes signed bits.
 
@@ -105,8 +105,8 @@ tasks:
           - staging
           - production
         treeherder:
-          symbol: {{ chunk_name }}{% if subchunk %}.{{ subchunk }}{% endif %}s
-          groupSymbol: Update-{{ update_number }}
+          symbol: {{ e.locale }}
+          groupSymbol: fs-s-{{ update_number }}
           collection:
             opt: true
           machine:
@@ -142,8 +142,8 @@ tasks:
           - staging
           - production
         treeherder:
-          symbol: {{ chunk_name }}{% if subchunk %}.{{ subchunk }}{% endif %}u
-          groupSymbol: Update-{{ update_number }}
+          symbol: {{ e.locale }}
+          groupSymbol: fs-u-{{ update_number }}
           collection:
             opt: true
           machine:
@@ -154,7 +154,7 @@ tasks:
       metadata:
         owner: release+funsize@mozilla.com
         source: https://github.com/mozilla/funsize
-        name: "[funsize] Publish to Balrog (today-{{ update_number }}, chunk {{ chunk_name }}{% if subchunk %}, subchunk {{ subchunk }}{% endif %})"
+        name: "[funsize] Publish to Balrog (today-{{ update_number }}, locale {{ e.locale }})"
         description: |
           This task publishes signed updates to Balrog.
 
