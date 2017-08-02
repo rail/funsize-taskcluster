@@ -50,6 +50,7 @@ tasks:
         treeherder:
           symbol: {{ locale_desc }}
           groupSymbol: fs-g-{{ update_number }}
+          groupName: "Funsize partial MAR on demand"
           collection:
             opt: true
           machine:
